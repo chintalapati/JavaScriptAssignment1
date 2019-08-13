@@ -1,0 +1,101 @@
+<!-- Question 1 -->
+<!DOCTYPE html>
+<html>
+    <head>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <title>jQuery page</title>
+        <link rel="stylesheet" type="text/css" href = "index.css">
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+                integrity="sha256-varzP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+                crossorigin="anonymous"></script>
+        <link href="https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet" />
+    </head>
+    <body>
+    <div>
+        <p name="marlabs">Paragraph - 1</p>
+        <p name="marlabs-new-jersey">Paragraph - 1</p>
+        <p name="new-jersey-marlabs">Paragraph - 1</p>
+        <p name="marlabs new jersey">Paragraph - 1</p>
+        <p name="new jersey marlabs">Paragraph - 1</p>
+        <p name="newjersey marlabs philadelphia">Paragraph - 1</p>
+        <p name="newJerseymarlabs">Paragraph - 1</p>
+        <p name="newJerseymarlabsPhiladelphia">Paragraph - 1</p>
+</div>
+<p>window<span>0</span></p>
+<p>hello click here</p>
+<script>
+        jQuery("p[name *= 'marlabs']").css("border","1px solid green");
+        jQuery("p[name = 'marlabs']").css("border","1px solid green");
+        jQuery("p[name ^= 'marlabs']").css("border","1px solid green");
+        jQuery("p[name $= 'marlabs']").css("border","1px solid green");
+        jQuery("p[name ~= 'marlabs']").css("border","1px solid green");
+        jQuery("div > p:last-child").css("border", "1px solid green");
+//question 2
+var x = 0;
+    jQuery(document).ready(function() {
+        jQuery("p").dblclick(function(){
+            $(this).text("hello marlabs");
+        });
+    $("p:last").hover(function() {
+        $(this).text("hello marlabs");
+    }, function() {
+        $(this).css("background-color","pink");
+    });
+    $(p).on("click",function() {
+        $(this).printThis("hello");
+    });
+    jQuery(document).keypress(function(){
+        console.log("hello marlabs keypress");
+    });
+    jQuery(document).keydown(function(){
+        console.log("hello marlabs keydown");
+    });
+    jQuery(document).keyup(function(){
+        console.log("hello marlabs keyup");
+    });
+    jQuery(document).resize(function(){
+        $("span").text(x += 1);
+    });
+});
+//question 3
+//jquery
+jQuery(document).ready(function(){
+            jQuery.ajax({
+
+                'type':'GET',
+                'url':'https://pokeapi.co/api/v2/pokemon/ditto/',
+                'dataType': 'json',
+            'success': function(data)   {
+                var assignment = [];
+                for(var i=0;i<data.game_indices.length;i++)
+                {
+                 assignment.push(data.game_indices[i].version.name);
+                }
+                console.log(assignment);
+            }
+             });
+        });
+//javascript
+       var request = new XMLHttpRequest()
+       request.open('GET','https://pokeapi.co/api/v2/pokemon/ditto/',true)
+       request.onload = function(){
+
+        var data = JSON.parse(this.response)
+        var assignment = [];
+        if(request.status>=200 && request.status<400)
+        {   
+            for(var i=0;i<data.game_indices.length;i++)
+            {
+                assignment.push(data.game_indices[i].version.name);
+            }
+        }
+        else{
+           console.log('error')
+       }
+       console.log(assignment);
+    }
+    request.send()
+</script>
+</body>
+</html>
